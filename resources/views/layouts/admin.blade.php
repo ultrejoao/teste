@@ -59,18 +59,18 @@
                         <div class="center-item">
                             <ul class="menu-list">
                                 <li class="menu-item has-children">
-                                    <a href="{{ asset('javascript:void(0);')}}" class="menu-item-button">
+                                    <a href="javascript:void(0);" class="menu-item-button">
                                         <div class="icon"><i class="icon-shopping-cart"></i></div>
                                         <div class="text">Products</div>
                                     </a>
                                     <ul class="sub-menu">
                                         <li class="sub-menu-item">
-                                            <a href="{{ asset('add-product.html')}}" class="">
+                                            <a href="{{ route('admin.product.create')}}" class="">
                                                 <div class="text">Add Product</div>
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href=""class="">
+                                            <a href="{{ route('admin.products')}}"class="">
                                                 <div class="text">Products</div>
                                             </a>
                                         </li>
@@ -112,49 +112,17 @@
                                         </li>
                                     </ul>
                                 </li>
-
-                                <li class="menu-item has-children">
-                                    <a href="{{ asset('javascript:void(0);')}}" class="menu-item-button">
-                                        <div class="icon"><i class="icon-file-plus"></i></div>
-                                        <div class="text">Order</div>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="sub-menu-item">
-                                            <a href="{{ asset('orders.html')}}" class="">
-                                                <div class="text">Orders</div>
-                                            </a>
-                                        </li>
-                                        <li class="sub-menu-item">
-                                            <a href="{{ asset('order-tracking.html')}}" class="">
-                                                <div class="text">Order tracking</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ asset('slider.html')}}" class="">
-                                        <div class="icon"><i class="icon-image"></i></div>
-                                        <div class="text">Slider</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{ asset('coupons.html')}}" class="">
-                                        <div class="icon"><i class="icon-grid"></i></div>
-                                        <div class="text">Coupns</div>
-                                    </a>
-                                </li>
-
                                 <li class="menu-item">
                                     <a href="{{ asset('users.html')}}"class="">
                                         <div class="icon"><i class="icon-user"></i></div>
-                                        <div class="text">User</div>
+                                        <div class="text">Usuario</div>
                                     </a>
                                 </li>
 
                                 <li class="menu-item">
                                     <a href="{{ asset('settings.html')}}" class="">
                                         <div class="icon"><i class="icon-settings"></i></div>
-                                        <div class="text">Settings</div>
+                                        <div class="text">Configurações</div>
                                     </a>
                                 </li>
 
