@@ -9,6 +9,8 @@ use illuminate\Support\Str;
 use illuminate\Support\Facades\File;
 use Intervention\Image\Laravel\Facades\Image;
 use App\Models\Product;
+use App\Models\Category;
+
 
 class AdminController extends Controller
 {
@@ -90,19 +92,22 @@ class AdminController extends Controller
         })->save($destinationPath.'/'.$imageName);
     }
 
+    // CONTROLLER DOS PRODUTOS
+
     public function products()
     {
         $products = Product::orderBy('id', 'DESC')->paginate(10);
         return view('admin.products', compact('products'));
     }
 
-    // Método para mostrar o formulário de criação de produto
+    // Exibe o formulário de criação de produto
     public function create_product()
     {
-        return view('admin.product-add');
+        $categories = Category::all();  // Pega todas as categorias
+        return view('admin.product-add', compact('categories'));
     }
 
-    // EXCLUI DA LISTA O PRODUTO
+    // Exclui um produto
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
@@ -110,27 +115,30 @@ class AdminController extends Controller
         return redirect()->route('admin.products')->with('success', 'ITEM DELETADO COM SUCESSO');
     }
 
-    // EDITAR PRODUTO
+    // Exibe o formulário de edição do produto
     public function edit($id)
     {
-
         $product = Product::findOrFail($id);
-        return view('admin.edit', compact('product'));
+        $categories = Category::all();  // Pega todas as categorias
+        return view('admin.edit', compact('product', 'categories'));
     }
 
-    // UPDATE DO PRODUTO
+    // Atualiza o produto
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+
+        // Atualiza os dados do produto, incluindo a categoria
         $product->name = $request->input('name');
         $product->regular_price = $request->input('regular_price');
         $product->quantity = $request->input('quantity');
+        $product->category_id = $request->input('category_id');  // Atualiza a categoria associada
         $product->save();
 
         return redirect()->route('admin.products')->with('success', 'ITEM ATUALIZADO COM SUCESSO');
     }
 
-    // SALVANDO PRODUTO NO BD
+    // Armazena um novo produto
     public function store_product(Request $request)
     {
         $request->validate([
@@ -140,6 +148,7 @@ class AdminController extends Controller
             'regular_price' => 'required|numeric',
             'quantity' => 'required|integer',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'category_id' => 'required|exists:categories,id',  // Validação para categoria
         ]);
 
         $product = new Product();
@@ -149,6 +158,7 @@ class AdminController extends Controller
         $product->regular_price = $request->regular_price;
         $product->sale_price = $request->sale_price;
         $product->quantity = $request->quantity;
+        $product->category_id = $request->category_id;  // Atribui a categoria ao produto
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -159,7 +169,71 @@ class AdminController extends Controller
 
         $product->save();
 
-        return redirect()->route('admin.products')->with('status', 'Product added successfully!');
+        return redirect()->route('admin.products')->with('status', 'Produto adicionado com sucesso!');
+    }
+
+    // Exibe todas as categorias
+    public function categories()
+    {
+        $categories = Category::all();  // Obtém todas as categorias
+        return view('admin.categories.index', compact('categories'));
+    }
+
+    // Exibe o formulário de criação de categoria
+    public function createCategory()
+    {
+        return view('admin.categories.create');  // Exibe o formulário de criação
+    }
+
+    // Armazena a nova categoria
+    public function storeCategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        Category::create($request->all());  // Cria a nova categoria
+
+        return redirect()->route('admin.categories.index')->with('status', 'Categoria criada com sucesso!');
+    }
+
+    // Exibe o formulário de edição de categoria
+    public function editCategory($id)
+    {
+        $category = Category::findOrFail($id);  // Encontra a categoria pelo ID
+        return view('admin.categories.edit', compact('category'));  // Exibe o formulário de edição
+    }
+
+    // Atualiza uma categoria
+
+    public function updateCategory(Request $request, $id)
+    {
+        // Validação para o campo nome e para o slug único
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $id,
+        ]);
+
+        // Obtém a categoria pelo ID
+        $category = Category::findOrFail($id);
+
+        // Atualiza o nome e o slug baseado no novo nome
+        $category->name = $request->input('name');
+        $category->slug = Str::slug($request->input('name')); // Cria um novo slug
+
+        $category->save();
+
+        return redirect()->route('admin.categories.index')->with('status', 'Categoria atualizada com sucesso!');
+    }
+
+
+    // Exclui uma categoria
+    public function destroyCategory($id)
+    {
+        $category = Category::findOrFail($id);  // Encontra a categoria pelo ID
+        $category->delete();  // Exclui a categoria
+
+        return redirect()->route('admin.categories.index')->with('status', 'Categoria excluída com sucesso!');
     }
 
 

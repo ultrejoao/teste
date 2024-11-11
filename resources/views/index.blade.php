@@ -466,48 +466,15 @@
                       </div>
                     </div>
                   </div>
-                </div><!-- /.swiper-wrapper -->
-              </div><!-- /.swiper-container js-swiper-slider -->
-            </div><!-- /.position-relative -->
-          </div>
-        </div>
-      </section>
-
-      <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
-
-      <section class="category-banner container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="category-banner__item border-radius-10 mb-5">
-              <img loading="lazy" class="h-auto" src="{{ asset ('assets/images/home/demo3/category_9.jpg') }}" width="690" height="665"
-                alt="" />
-              <div class="category-banner__item-mark">
-                Starting at $19
-              </div>
-              <div class="category-banner__item-content">
-                <h3 class="mb-0">Blazers</h3>
-                <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="category-banner__item border-radius-10 mb-5">
-              <img loading="lazy" class="h-auto" src="{{ asset ('assets/images/home/demo3/category_10.jpg') }}" width="690" height="665"
-                alt="" />
-              <div class="category-banner__item-mark">
-                Starting at $19
-              </div>
-              <div class="category-banner__item-content">
-                <h3 class="mb-0">Sportswear</h3>
-                <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
 
+      <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
       <section class="products-grid container">
         <h2 class="section-title text-center mb-3 pb-xl-3 mb-xl-4">Featured Products</h2>
         <div class="row">
@@ -535,6 +502,15 @@
                                 ${{ number_format($product->regular_price, 2) }}
                             </span>
                         </div>
+
+                        <!-- Formulário de Adicionar ao Carrinho -->
+                        <form action="{{ route('cart.add') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <button type="submit" class="btn btn-primary mt-3">
+                                Adicionar ao Carrinho
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -36,6 +36,16 @@
                             <label for="name" class="body-title">Nome:</label>
                             <input type="text" name="name" id="name" value="{{ $product->name }}" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label for="category_id" class="body-title">Categoria:</label>
+                            <select name="category_id" id="category_id" class="form-control" required>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <label for="regular_price" class="body-title">Preço:</label>

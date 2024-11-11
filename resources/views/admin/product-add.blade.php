@@ -33,6 +33,16 @@
                             <label for="name" class="body-title">Nome do Produto</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label for="category_id" class="body-title">Categoria:</label>
+                            <select name="category_id" id="category_id" class="form-control" required>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <label for="slug" class="body-title">SKU</label>
