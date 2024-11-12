@@ -171,6 +171,11 @@ class AdminController extends Controller
 
         return redirect()->route('admin.products')->with('status', 'Produto adicionado com sucesso!');
     }
+    public function showProductDetails($id)
+    {
+        $product = Product::findOrFail($id);  // Busca o produto pelo ID
+        return view('product.details', compact('product'));  // Retorna a view com os dados do produto
+    }
 
     // Exibe todas as categorias
     public function categories()
@@ -209,18 +214,14 @@ class AdminController extends Controller
 
     public function updateCategory(Request $request, $id)
     {
-        // Validação para o campo nome e para o slug único
+
         $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $id,
         ]);
 
-        // Obtém a categoria pelo ID
         $category = Category::findOrFail($id);
-
-        // Atualiza o nome e o slug baseado no novo nome
         $category->name = $request->input('name');
-        $category->slug = Str::slug($request->input('name')); // Cria um novo slug
-
+        $category->slug = Str::slug($request->input('name'));
         $category->save();
 
         return redirect()->route('admin.categories.index')->with('status', 'Categoria atualizada com sucesso!');
@@ -230,8 +231,8 @@ class AdminController extends Controller
     // Exclui uma categoria
     public function destroyCategory($id)
     {
-        $category = Category::findOrFail($id);  // Encontra a categoria pelo ID
-        $category->delete();  // Exclui a categoria
+        $category = Category::findOrFail($id);
+        $category->delete();
 
         return redirect()->route('admin.categories.index')->with('status', 'Categoria excluída com sucesso!');
     }

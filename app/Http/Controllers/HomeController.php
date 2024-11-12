@@ -3,27 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product; // Certifique-se de importar o modelo Product
+use App\Models\Product;
 
 class HomeController extends Controller
 {
-    // Método para exibir a lista de produtos
-    public function index()
+    public function showPopularProducts()
     {
-        // Busca todos os produtos
-        $products = Product::all();  // Ou use paginate() para paginação se necessário
+        // IDs das categorias específicas
+        $firstCategoryId = 5;  // Substitua pelo ID da primeira categoria
+        $secondCategoryId = 9; // Substitua pelo ID da segunda categoria
 
-        // Retorna a view com os produtos
-        return view('index', compact('products'));
+        // Obtendo produtos da primeira categoria
+        $firstCategoryProducts = Product::where('category_id', $firstCategoryId)
+                                        ->take(10)
+                                        ->get();
+
+        // Obtendo produtos da segunda categoria
+        $secondCategoryProducts = Product::where('category_id', $secondCategoryId)
+                                         ->take(4)
+                                         ->get();
+
+        // Passando as coleções separadamente para a view
+        return view('index', compact('firstCategoryProducts', 'secondCategoryProducts'));
     }
 
-    // Método para exibir os detalhes do produto
     public function productDetails($id)
     {
-        // Encontre o produto pelo id
         $product = Product::findOrFail($id);
-
-        // Retorne a view com os detalhes do produto
         return view('product.details', compact('product'));
     }
 }
+
+

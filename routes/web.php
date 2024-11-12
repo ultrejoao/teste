@@ -11,14 +11,14 @@ use App\Http\Controllers\CartController;
 Auth::routes();
 
 //Rota Home
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'showPopularProducts'])->name('home.index');
 Route::get('/product/{id}', [HomeController::class, 'productDetails'])->name('product.details');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('/account/edit', [UserController::class, 'edit'])->name('user.edit');  // Rota para editar
     Route::put('/account/update', [UserController::class, 'update'])->name('user.update');  // Rota para atualizar
-    
+
     Route::get('/cart/view', [CartController::class, 'index'])->name('cart.index'); // Ver o carrinho
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add'); // Adicionar ao carrinho
     Route::delete('/cart/remove', [CartController::class, 'remove'])->name('cart.remove'); // Remover do carrinho (Método DELETE)
