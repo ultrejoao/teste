@@ -33,12 +33,17 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="name" class="body-title">Nome:</label>
+                            <label for="name" class="body-title">Nome da Categoria</label>
                             <input type="text" name="name" id="name" value="{{ $category->name }}" class="form-control" required>
                         </div>
 
                         <div class="form-group">
-                            <button class="tf-button style-1 w208" style="margin-top:10px" type="submit">Atualizar Categoria</button>
+                            <label for="description" class="body-title">Descrição</label>
+                            <textarea name="description" id="description" class="form-control">{{ $category->description }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="tf-button style-1 w208" style="margin-top: 20px;" type="submit">Atualizar Categoria</button>
                         </div>
                     </form>
                 </div>

@@ -19,7 +19,7 @@
               <div class="form-floating mb-3">
                 <input class="form-control form-control_gray  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" autocomplete="email"
                   autofocus="">
-                <label for="email">Email address *</label>
+                <label for="email">Endereço de email *</label>
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
 
               <div class="form-floating mb-3">
                 <input id="password" type="password" class="form-control form-control_gray @error('password') is-invalid @enderror" name="password" required="" autocomplete="current-password">
-                <label for="customerPasswodInput">Password *</label>
+                <label for="customerPasswodInput">Senha *</label>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -39,11 +39,11 @@
                 @enderror
               </div>
 
-              <button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button>
+              <button class="btn btn-primary w-100 text-uppercase" type="submit">Entrar</button>
 
               <div class="customer-option mt-4 text-center">
-                <span class="text-secondary">No account yet?</span>
-                <a href="{{ route('register') }}" class="btn-text js-show-register">Create Account</a>
+                <span class="text-secondary">Não possui uma conta?</span>
+                <a href="{{ route('register') }}" class="btn-text js-show-register">Crie sua conta</a>
               </div>
             </form>
           </div>

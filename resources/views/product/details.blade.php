@@ -1,22 +1,18 @@
-<!-- resources/views/product/details.blade.php -->
-
-@extends('layouts.app')  <!-- Extende o layout principal (caso tenha um layout) -->
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row">
-        <!-- Coluna de imagem do produto -->
+
         <div class="col-md-6" style="margin-top: 100px">
             <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
         </div>
-
-        <!-- Coluna de informações do produto -->
         <div class="col-md-6" style="margin-top: 100px">
             <h2>{{ $product->name }}</h2>
             <p>{{ $product->description }}</p>
             <h3>${{ number_format($product->regular_price, 2) }}</h3>
 
-            <!-- Formulário para adicionar ao carrinho -->
+            <!-- FORM PARA ADD NO CARRINHO -->
             <form action="{{ route('cart.add') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">

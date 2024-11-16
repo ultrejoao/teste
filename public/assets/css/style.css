@@ -800,26 +800,26 @@ progress {
 
     /* Estilizando o botão para combinar com o visual desejado */
 .custom-btn-add-to-cart {
-    background-color: #bd3737;  /* Cor de fundo */
-    color: #fff;  /* Cor do texto */
-    border: none;  /* Sem borda */
-    padding: 10px 20px;  /* Preenchimento interno */
-    font-size: 16px;  /* Tamanho da fonte */
-    text-transform: uppercase;  /* Texto em maiúsculas */
-    font-weight: 500;  /* Peso da fonte */
-    border-radius: 5px;  /* Bordas arredondadas */
-    transition: background-color 0.3s ease;  /* Transição suave na cor de fundo */
+    background-color: #bd3737;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 /* Adicionando efeito de hover para quando o usuário passar o mouse sobre o botão */
 .custom-btn-add-to-cart:hover {
-    
-    text-decoration: none;  /* Remover underline se houver */
+
+    text-decoration: none;
 }
 
 /* Estilização adicional para os ícones ou texto se necessário */
 .custom-btn-add-to-cart i {
-    margin-right: 5px;  /* Espaço entre o ícone e o texto */
+    margin-right: 5px; 
 }
 
 .btn-group,

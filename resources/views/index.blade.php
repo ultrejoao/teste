@@ -1,49 +1,53 @@
 @extends('layouts.app')
 @section('content')
 <main>
-
-    <section class="swiper-container js-swiper-slider swiper-number-pagination slideshow" data-settings='{
-        "autoplay": {
-          "delay": 5000
-        },
-        "slidesPerView": 1,
-        "effect": "fade",
-        "loop": true
-      }'>
-      <div class="swiper-wrapper">
+    <section class="swiper-container js-swiper-slider swiper-number-pagination custom-slideshow"
+         data-settings='{
+            "autoplay": {
+                "delay": 5000
+            },
+            "slidesPerView": 1,
+            "loop": true,
+            "navigation": {
+                "nextEl": ".swiper-button-next",
+                "prevEl": ".swiper-button-prev"
+            },
+            "effect": "slide"
+         }'>
+    <div class="swiper-wrapper">
         @foreach ($firstCategoryProducts as $product)
             <div class="swiper-slide">
-                <div class="overflow-hidden position-relative h-100">
-                    <div class="slideshow-character position-absolute bottom-0 pos_right-center">
+                <div class="product-card custom-product-card">
+                    <!-- Imagem à direita -->
+                    <div class="product-image-wrapper">
                         <img loading="lazy"
                              src="{{ asset('uploads/products/' . $product->image) }}"
-                             width="542" height="733"
                              alt="{{ $product->name }}"
-                             class="slideshow-character__img animate animate_fade animate_btt animate_delay-9 w-auto h-auto" />
-                        <div class="character_markup type2">
-                        </div>
+                             class="product-image">
                     </div>
-                    <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
-                        <h2 class="h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">
-                            {{ $product->name }}
-                        </h2>
-                        <h2 class="h1 fw-bold animate animate_fade animate_btt animate_delay-5">
-                            R$ {{ number_format($product->regular_price, 2, ',', '.') }}
-                        </h2>
-                        <a href="{{ route('product.details', $product->id) }}" class="btn-link btn-link_lg default-underline fw-medium animate animate_fade animate_btt animate_delay-7">
-                            Compre Agora
-                        </a>
+
+                    <!-- Descrição à esquerda -->
+                    <div class="product-info">
+                        <h3 class="product-title">{{ $product->name }}</h3>
+                        <h3 style="color:#388d05">FRETE GRATIS!</h3>
+                        <p class="product-price">R$ {{ number_format($product->regular_price, 2, ',', '.') }}</p>
+                        <p>{{ $product->description }}</p>
+                        <a href="{{ route('product.details', $product->id) }}" class="btn custom-btn">Compre Agora</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-      <div class="container">
-        <div
-          class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0 mb-5">
-        </div>
-      </div>
-    </section>
+
+    <!-- Botões de navegação -->
+    <div class="swiper-button-next custom-swiper-nav"></div>
+    <div class="swiper-button-prev custom-swiper-nav"></div>
+
+    <!-- Paginação -->
+    <div class="swiper-pagination custom-swiper-pagination"></div>
+</section>
+
+
 
     <div class="container mw-1620 bg-white border-radius-10">
       <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
@@ -53,7 +57,6 @@
         <div class="row">
             <div class="col-md-6 col-lg-4 col-xl-20per d-flex align-items-center flex-column justify-content-center py-4 align-items-md-start">
                 <h2>Peças Volkswagen</h2>
-                <a href="#" class="btn-link default-underline text-uppercase fw-medium mt-3">Ver mais</a>
             </div>
 
             <div class="col-md-6 col-lg-8 col-xl-80per">

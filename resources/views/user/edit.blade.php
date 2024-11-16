@@ -10,7 +10,7 @@
 
     <form action="{{ route('user.update') }}" method="POST">
         @csrf
-        @method('PUT')  <!-- Usamos o método PUT para atualizar os dados -->
+        @method('PUT') 
 
         <div class="form-group">
             <label for="name">Nome</label>
