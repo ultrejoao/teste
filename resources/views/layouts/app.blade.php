@@ -117,7 +117,7 @@
                     <a href="{{ route('cart.index')}}" class="navigation__link">Carrinho</a>
                   </li>
                   <li class="navigation__item">
-                    <a href="about.html" class="navigation__link">Contato</a>
+                    <a href="{{ route('products.index')}}" class="navigation__link">Produtos</a>
                   </li>
                 </ul>
               </nav>
@@ -198,8 +198,8 @@
               <div class="footer-column footer-menu mb-4 mb-lg-0">
                 <h6 class="sub-menu__title text-uppercase">Empresa</h6>
                 <ul class="sub-menu__list list-unstyled">
-                  <li class="sub-menu__item"><a href="about-2.html" class="menu-link menu-link_us-s">Sobre Nós</a></li>
-                  <li class="sub-menu__item"><a href="contact-2.html" class="menu-link menu-link_us-s">Contato</a></li>
+                  <li class="sub-menu__item"><a href="{{ route('products.index')}}" class="menu-link menu-link_us-s">Produtos</a></li>
+                  <li class="sub-menu__item"><a href="{{ route('home.index')}}" class="menu-link menu-link_us-s">Contato</a></li>
                 </ul>
               </div>
               <div class="footer-column footer-menu mb-4 mb-lg-0">
@@ -207,7 +207,7 @@
                 <ul class="sub-menu__list list-unstyled">
                   <li class="sub-menu__item"><a href="{{ route('login') }}" class="menu-link menu-link_us-s">Minha Conta</a>
                   </li>
-                  <li class="sub-menu__item"><a href="store_location.html" class="menu-link menu-link_us-s">Pesquise na Loja</a>
+                  <li class="sub-menu__item"><a href="{{ route('products.index')}}" class="menu-link menu-link_us-s">Pesquise na Loja</a>
                   </li>
                 </ul>
               </div>

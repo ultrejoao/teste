@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Turbo Zone</title>
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="author" content="surfside media" />
+        <link rel="shortcut icon" href="{{ asset('assets/images/motors.png') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/animation.css')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css')}}">
@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('font/fonts.css')}}">
         <link rel="stylesheet" href="{{ asset('icon/style.css')}}">
-        <link rel="shortcut icon" href="{{ asset('images/favicon.ico')}}">
+
         <link rel="apple-touch-icon-precomposed" href="{{ asset('images/favicon.ico')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}">
@@ -29,7 +29,7 @@
             <div class="layout-wrap">
                 <div class="section-menu-left">
                     <div class="box-logo">
-                        <a href="{{ route('admin.index')}}" id="site-logo-inner">
+                        <a href="{{ route('home.index')}}" id="site-logo-inner">
                             <img class="" id="logo_header_1" alt="" src="{{ asset('assets/images/motors.png') }}" style="max-width: 50px; display: block; margin: 0 auto;">
                         </a>
                         <div class="button-show-hide">

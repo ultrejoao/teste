@@ -10,7 +10,7 @@
         <div class="col-md-6" style="margin-top: 100px">
             <h2>{{ $product->name }}</h2>
             <p>{{ $product->description }}</p>
-            <h3>${{ number_format($product->regular_price, 2) }}</h3>
+            <h3>R${{ number_format($product->regular_price, 2) }}</h3>
 
             <!-- FORM PARA ADD NO CARRINHO -->
             <form action="{{ route('cart.add') }}" method="POST">

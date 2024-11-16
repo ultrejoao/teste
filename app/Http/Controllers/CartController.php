@@ -19,10 +19,10 @@ class CartController extends Controller
     public function add(Request $request)
     {
         // Verifique se o product_id foi enviado na requisição
-        $productId = $request->product_id;  // Aqui pegamos o ID do produto
+        $productId = $request->product_id;
 
         // Certifique-se de que o produto existe antes de continuar
-        $product = Product::findOrFail($productId); // Procura o produto pelo ID
+        $product = Product::findOrFail($productId); 
 
         // Se o produto já estiver no carrinho, apenas aumenta a quantidade
         $cart = session()->get('cart', []);

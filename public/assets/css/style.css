@@ -798,7 +798,6 @@ progress {
   .dropdown-menu-dark .dropdown-header {
     color: #adb5bd; }
 
-    /* Estilizando o botão para combinar com o visual desejado */
 .custom-btn-add-to-cart {
     background-color: #bd3737;
     color: #fff;
@@ -811,15 +810,13 @@ progress {
     transition: background-color 0.3s ease;
 }
 
-/* Adicionando efeito de hover para quando o usuário passar o mouse sobre o botão */
 .custom-btn-add-to-cart:hover {
 
     text-decoration: none;
 }
 
-/* Estilização adicional para os ícones ou texto se necessário */
 .custom-btn-add-to-cart i {
-    margin-right: 5px; 
+    margin-right: 5px;
 }
 
 .btn-group,

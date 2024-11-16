@@ -13,6 +13,8 @@ Auth::routes();
 //Rota Home
 Route::get('/', [HomeController::class, 'showPopularProducts'])->name('home.index');
 Route::get('/product/{id}', [HomeController::class, 'productDetails'])->name('product.details');
+Route::get('/load-more', [HomeController::class, 'loadMore'])->name('load.more');
+Route::get('/products', [HomeController::class, 'index'])->name('products.index');
 
 Route::middleware(['auth'])->group(function(){
     //USER

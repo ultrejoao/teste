@@ -15,10 +15,10 @@
             "effect": "slide"
          }'>
     <div class="swiper-wrapper">
-        @foreach ($firstCategoryProducts as $product)
+        @foreach ($thirdCategoryProducts as $product)
             <div class="swiper-slide">
                 <div class="product-card custom-product-card">
-                    <!-- Imagem à direita -->
+
                     <div class="product-image-wrapper">
                         <img loading="lazy"
                              src="{{ asset('uploads/products/' . $product->image) }}"
@@ -26,7 +26,7 @@
                              class="product-image">
                     </div>
 
-                    <!-- Descrição à esquerda -->
+
                     <div class="product-info">
                         <h3 class="product-title">{{ $product->name }}</h3>
                         <h3 style="color:#388d05">FRETE GRATIS!</h3>
@@ -38,17 +38,12 @@
             </div>
         @endforeach
     </div>
-
-    <!-- Botões de navegação -->
     <div class="swiper-button-next custom-swiper-nav"></div>
     <div class="swiper-button-prev custom-swiper-nav"></div>
 
     <!-- Paginação -->
     <div class="swiper-pagination custom-swiper-pagination"></div>
 </section>
-
-
-
     <div class="container mw-1620 bg-white border-radius-10">
       <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
       <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
@@ -56,7 +51,7 @@
         <h2 class="section-title text-center mb-3 pb-xl-3 mb-xl-4">Promoções</h2>
         <div class="row">
             <div class="col-md-6 col-lg-4 col-xl-20per d-flex align-items-center flex-column justify-content-center py-4 align-items-md-start">
-                <h2>Peças Volkswagen</h2>
+                <h2>Fluidos e Óleos</h2>
             </div>
 
             <div class="col-md-6 col-lg-8 col-xl-80per">
@@ -114,8 +109,6 @@
                                         <form action="{{ route('cart.add') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-
-                                            <!-- Botão com o estilo atualizado -->
                                             <button type="submit" class="btn custom-btn-add-to-cart mt-3">
                                                 Adicionar ao Carrinho
                                             </button>
@@ -179,6 +172,40 @@
         <div class="text-center mt-2">
           <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="#">Ver mais</a>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            let offset = 4;
+            const categoryId = 9; // Substitua pelo ID da categoria que deseja carregar
+            const button = document.querySelector('.btn-link');
+            const productsGrid = document.querySelector('.products-grid .row');
+
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                fetch(`/load-more?offset=${offset}&category_id=${categoryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error(data.error);
+                            return;
+                        }
+
+                        // Adiciona o HTML retornado ao final da lista de produtos
+                        productsGrid.insertAdjacentHTML('beforeend', data.html);
+
+                        // Incrementa o offset
+                        offset += 8;
+
+                        // Se não houver mais produtos, oculta o botão
+                        if (!data.html.trim()) {
+                            button.style.display = 'none';
+                        }
+                    })
+                    .catch(error => console.error('Erro ao carregar mais produtos:', error));
+            });
+        });
+
+        </script>
       </section>
     </div>
 

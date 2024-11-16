@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top:20px">
     <h2>Carrinho de Compras</h2>
 
     @if(Session::has('status'))
@@ -36,14 +36,13 @@
                         </td>
                         <td>R$ {{ number_format($item['price'] * $item['quantity'], 2, ',', '.') }}</td>
                         <td>
-                            @foreach($cart as $productId => $product)
-                                <form action="{{ route('cart.remove') }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="product_id" value="{{ $productId }}">
-                                    <button type="submit" class="btn btn-danger">Remover</button>
-                                </form>
-                            @endforeach
+                            <!-- Formulário para remover o produto específico -->
+                            <form action="{{ route('cart.remove') }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="product_id" value="{{ $id }}">
+                                <button type="submit" class="btn btn-danger">Remover</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -55,7 +54,10 @@
             <a href="#" class="btn btn-success">Finalizar Compra</a>
         </div>
     @else
+    <div class="" style="padding: 200px">
         <p>Carrinho vazio!</p>
+    </div>
     @endif
 </div>
 @endsection
+
