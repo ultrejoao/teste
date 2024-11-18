@@ -12,15 +12,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id(); // ID do produto
-            $table->string('name'); // Nome do produto
-            $table->string('slug')->unique(); // Slug para URL amigável
-            $table->text('description'); // Descrição do produto
-            $table->decimal('regular_price', 8, 2); // Preço original
-            $table->decimal('sale_price', 8, 2)->nullable(); // Preço promocional
-            $table->integer('quantity')->default(0); // Quantidade disponível
-            $table->string('image')->nullable(); // Imagem do produto
-            $table->timestamps(); // Created_at e updated_at
+            $table->id(); 
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description');
+            $table->decimal('regular_price', 8, 2);
+            $table->decimal('sale_price', 8, 2)->nullable();
+            $table->integer('quantity')->default(0);
+            $table->string('image')->nullable();
+            $table->timestamps();
         });
     }
 

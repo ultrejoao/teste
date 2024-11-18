@@ -22,7 +22,6 @@
 
         <div class="wg-box">
             <div class="flex items-center justify-between gap10 flex-wrap">
-                <!-- Botão Adicionar Nova Categoria -->
                 <a href="{{ route('admin.categories.create') }}" class="tf-button style-1 w208">
                     <i class="icon-plus"></i> Adicionar Nova Categoria
                 </a>
@@ -69,7 +68,7 @@
                         </tbody>
                     </table>
 
-                    {{ $categories->links() }} <!-- Paginação -->
+                    {{ $categories->links() }} 
                 </div>
             </div>
         </div>

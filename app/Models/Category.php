@@ -11,9 +11,8 @@ class Category extends Model
 
     // Defina os campos que podem ser atribuídos em massa
     protected $fillable = [
-        'name',   // Nome da categoria
-        'slug',   // Slug da categoria (se necessário)
-        // Outros campos que você quiser permitir a atribuição em massa
+        'name',
+        'slug',
     ];
 
     // Relacionamento: Uma categoria tem muitos produtos

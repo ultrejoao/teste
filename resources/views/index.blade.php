@@ -41,7 +41,6 @@
     <div class="swiper-button-next custom-swiper-nav"></div>
     <div class="swiper-button-prev custom-swiper-nav"></div>
 
-    <!-- Paginação -->
     <div class="swiper-pagination custom-swiper-pagination"></div>
 </section>
     <div class="container mw-1620 bg-white border-radius-10">
@@ -101,10 +100,9 @@
                                 <div class="pc__info position-relative">
                                     <h6 class="pc__title"><a href="{{ route('product.details', $product->id) }}">{{ $product->name }}</a></h6>
                                     <div class="product-card__price d-flex">
-                                        <span class="money price text-secondary">${{ number_format($product->regular_price, 2) }}</span>
+                                        <span class="money price text-secondary">R${{ number_format($product->regular_price, 2) }}</span>
                                     </div>
 
-                                    <!-- Formulário de Adicionar ao Carrinho -->
                                     <div class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
                                         <form action="{{ route('cart.add') }}" method="POST">
                                             @csrf
@@ -149,7 +147,7 @@
                             </h6>
                             <div class="product-card__price d-flex align-items-center">
                                 <span class="money price text-secondary">
-                                    ${{ number_format($product->regular_price, 2) }}
+                                    R${{ number_format($product->regular_price, 2) }}
                                 </span>
                             </div>
 
@@ -173,9 +171,10 @@
           <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="#">Ver mais</a>
         </div>
         <script>
+            //VER MAIS
             document.addEventListener('DOMContentLoaded', function () {
             let offset = 4;
-            const categoryId = 9; // Substitua pelo ID da categoria que deseja carregar
+            const categoryId = 9;
             const button = document.querySelector('.btn-link');
             const productsGrid = document.querySelector('.products-grid .row');
 
@@ -190,7 +189,6 @@
                             return;
                         }
 
-                        // Adiciona o HTML retornado ao final da lista de produtos
                         productsGrid.insertAdjacentHTML('beforeend', data.html);
 
                         // Incrementa o offset

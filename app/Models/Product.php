@@ -12,7 +12,7 @@ class Product extends Model
     // Definindo a relação com a categoria
     public function category()
     {
-        return $this->belongsTo(Category::class);  // Indica que o produto pertence a uma categoria
+        return $this->belongsTo(Category::class);  // PRODUTO PERTENCE A UMA CATEGORIA
     }
 }
 

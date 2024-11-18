@@ -14,32 +14,27 @@ class UserController extends Controller
 
     public function edit()
     {
-        $user = Auth::user();  // Obtém o usuário autenticado
-        return view('user.edit', compact('user'));  // Passa o usuário para a view
+        $user = Auth::user();
+        return view('user.edit', compact('user'));
     }
     public function update(Request $request)
 {
-    $user = Auth::user();  // Obtém o usuário autenticado
-
-    // Validação dos dados do formulário
+    $user = Auth::user();
     $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-        'password' => 'nullable|min:6|confirmed',  // Senha é opcional, mas se for preenchida, precisa ser confirmada
+        'password' => 'nullable|min:6|confirmed', //SENHA NAO OBRIGATORIA, MAS SE PREENCHER PRECISA CONFIRMAR
     ]);
-
-    // Atualiza os dados do usuário
+    //ATUALIZA DADOS
     $user->name = $request->name;
     $user->email = $request->email;
 
-    // Se o usuário inseriu uma nova senha, ela será atualizada
     if ($request->filled('password')) {
         $user->password = bcrypt($request->password);
     }
 
-    $user->save();  // Salva as alterações no banco de dados
-
-    return redirect()->route('user.index')->with('status', 'Informações atualizadas com sucesso!');  // Redireciona para a página de perfil
+    $user->save();
+    return redirect()->route('user.index')->with('status', 'Informações atualizadas com sucesso!');
 }
 
 }

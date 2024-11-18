@@ -30,19 +30,15 @@
                     <form action="{{ route('admin.categories.store') }}" method="POST">
                         @csrf
 
-                        <!-- Nome da Categoria -->
                         <div class="form-group">
                             <label for="name" class="body-title">Nome da Categoria</label>
                             <input type="text" name="name" id="name" class="form-control" required>
                         </div>
-
-                        <!-- Descrição da Categoria -->
                         <div class="form-group">
                             <label for="description" class="body-title">Descrição</label>
                             <textarea name="description" id="description" class="form-control"></textarea>
                         </div>
 
-                        <!-- Botão de Salvar -->
                         <div class="form-group">
                             <button type="submit" class="tf-button style-3 w208" style="margin-top: 20px;">Salvar Categoria</button>
                         </div>

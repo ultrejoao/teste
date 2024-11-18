@@ -7,6 +7,7 @@ use App\Models\Product;
 
 class HomeController extends Controller
 {
+    //EXIBIR PRODUTOS
     public function showPopularProducts()
     {
         $firstCategoryId = 8;
@@ -32,6 +33,7 @@ class HomeController extends Controller
         ));
     }
 
+    //DETALHES DOS PRODUTOS
     public function productDetails($id)
     {
         $product = Product::findOrFail($id);
@@ -43,7 +45,6 @@ class HomeController extends Controller
         $limit = 4;
         $categoryId = $request->input('category_id');
 
-        // Validação para garantir que o category_id é fornecido
         if (!$categoryId) {
             return response()->json(['error' => 'Category ID is required'], 400);
         }
@@ -57,6 +58,7 @@ class HomeController extends Controller
             'html' => view('partials.product-cards', compact('products'))->render()
         ]);
     }
+    
     public function index(Request $request)
     {
         $query = $request->input('query');

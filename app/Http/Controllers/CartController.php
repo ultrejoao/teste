@@ -10,7 +10,6 @@ class CartController extends Controller
     // Exibir o carrinho de compras
     public function index()
     {
-        // Obter todos os itens do carrinho da sessão
         $cart = session()->get('cart', []);
         return view('cart.index', compact('cart'));
     }
@@ -18,19 +17,13 @@ class CartController extends Controller
     // Adicionar um produto ao carrinho
     public function add(Request $request)
     {
-        // Verifique se o product_id foi enviado na requisição
         $productId = $request->product_id;
-
-        // Certifique-se de que o produto existe antes de continuar
-        $product = Product::findOrFail($productId); 
-
-        // Se o produto já estiver no carrinho, apenas aumenta a quantidade
+        $product = Product::findOrFail($productId);
         $cart = session()->get('cart', []);
 
         if (isset($cart[$product->id])) {
             $cart[$product->id]['quantity']++;
         } else {
-            // Caso o produto não esteja no carrinho, adiciona
             $cart[$product->id] = [
                 'name' => $product->name,
                 'quantity' => 1,
@@ -38,8 +31,6 @@ class CartController extends Controller
                 'image' => $product->image,
             ];
         }
-
-        // Armazena o carrinho de volta na sessão
         session()->put('cart', $cart);
 
         return redirect()->route('cart.index')->with('status', 'Produto adicionado ao carrinho!');
@@ -50,7 +41,6 @@ class CartController extends Controller
     {
         $cart = session()->get('cart', []);
 
-        // Remove o produto do carrinho
         if (isset($cart[$request->product_id])) {
             unset($cart[$request->product_id]);
         }

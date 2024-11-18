@@ -34,7 +34,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nome</th>
-                                <th>Categoria</th> <!-- Nova coluna para exibir a categoria -->
+                                <th>Categoria</th>
                                 <th>Preço</th>
                                 <th>Quantidade</th>
                                 <th>Ações</th>
@@ -52,7 +52,7 @@
                                         </div>
                                     </td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->category ? $product->category->name : 'Sem Categoria' }}</td> <!-- Exibindo a categoria -->
+                                    <td>{{ $product->category ? $product->category->name : 'Sem Categoria' }}</td>
                                     <td>{{ $product->regular_price }}</td>
                                     <td>{{ $product->quantity }}</td>
                                     <td>
@@ -76,7 +76,7 @@
                         </tbody>
                     </table>
 
-                    {{ $products->links() }} <!-- Paginação -->
+                    {{ $products->links() }} 
                 </div>
             </div>
         </div>

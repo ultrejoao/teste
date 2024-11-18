@@ -36,7 +36,7 @@
                         </td>
                         <td>R$ {{ number_format($item['price'] * $item['quantity'], 2, ',', '.') }}</td>
                         <td>
-                            <!-- Formulário para remover o produto específico -->
+                            
                             <form action="{{ route('cart.remove') }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')

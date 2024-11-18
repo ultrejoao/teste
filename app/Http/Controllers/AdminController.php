@@ -30,7 +30,7 @@ class AdminController extends Controller
     // Exibe o formulário de criação de produto
     public function create_product()
     {
-        $categories = Category::all();  // Pega todas as categorias
+        $categories = Category::all();
         return view('admin.product-add', compact('categories'));
     }
 
@@ -46,7 +46,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $categories = Category::all();  // Pega todas as categorias
+        $categories = Category::all();
         return view('admin.edit', compact('product', 'categories'));
     }
 
@@ -54,12 +54,10 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-
-        // Atualiza os dados do produto, incluindo a categoria
         $product->name = $request->input('name');
         $product->regular_price = $request->input('regular_price');
         $product->quantity = $request->input('quantity');
-        $product->category_id = $request->input('category_id');  // Atualiza a categoria associada
+        $product->category_id = $request->input('category_id');
         $product->save();
 
         return redirect()->route('admin.products')->with('success', 'ITEM ATUALIZADO COM SUCESSO');
@@ -75,7 +73,7 @@ class AdminController extends Controller
             'regular_price' => 'required|numeric',
             'quantity' => 'required|integer',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-            'category_id' => 'required|exists:categories,id',  // Validação para categoria
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $product = new Product();
@@ -85,7 +83,7 @@ class AdminController extends Controller
         $product->regular_price = $request->regular_price;
         $product->sale_price = $request->sale_price;
         $product->quantity = $request->quantity;
-        $product->category_id = $request->category_id;  // Atribui a categoria ao produto
+        $product->category_id = $request->category_id;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -100,14 +98,14 @@ class AdminController extends Controller
     }
     public function showProductDetails($id)
     {
-        $product = Product::findOrFail($id);  // Busca o produto pelo ID
-        return view('product.details', compact('product'));  // Retorna a view com os dados do produto
+        $product = Product::findOrFail($id);
+        return view('product.details', compact('product'));
     }
 
     // Exibe todas as categorias
     public function categories()
     {
-        // Usando paginate para retornar 10 categorias por página (pode ajustar o número)
+
         $categories = Category::paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
@@ -116,7 +114,7 @@ class AdminController extends Controller
     // Exibe o formulário de criação de categoria
     public function createCategory()
     {
-        return view('admin.categories.create');  // Exibe o formulário de criação
+        return view('admin.categories.create');
     }
 
     // Armazena a nova categoria
@@ -127,7 +125,7 @@ class AdminController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        Category::create($request->all());  // Cria a nova categoria
+        Category::create($request->all());
 
         return redirect()->route('admin.categories.index')->with('status', 'Categoria criada com sucesso!');
     }
@@ -135,12 +133,11 @@ class AdminController extends Controller
     // Exibe o formulário de edição de categoria
     public function editCategory($id)
     {
-        $category = Category::findOrFail($id);  // Encontra a categoria pelo ID
-        return view('admin.categories.edit', compact('category'));  // Exibe o formulário de edição
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     // Atualiza uma categoria
-
     public function updateCategory(Request $request, $id)
     {
 
